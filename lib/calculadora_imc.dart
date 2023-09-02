@@ -19,24 +19,22 @@ void execute() {
 
   print(nome);
 
-  String nomeValidado = nome!;
+  String nomeValidado = nome;
   stdout.write("Digite o seu peso (kg): ");
   var peso = double.parse(stdin.readLineSync()!);
   pessoa.setPeso(peso);
 
   stdout.write("Digite a sua altura (cm): ");
-  var altura = double.parse(stdin.readLineSync()!);
-  do {
-    altura == null || altura < 10;
-  } while (altura == null || altura < 10);
-  // do {
-  //   stdout.write("Digite a sua altura (cm): ");
-  //   var altura = double.parse(stdin.readLineSync()!);
+  double? altura = double.tryParse(stdin.readLineSync()!);
 
-  //   if (altura == null && altura == "" && altura < 100) {
-  //     print("Altura inválida. Digite sua altura em cm. Ex 177 .");
-  //   }
-  // } while (altura == null || altura == '' || altura < 100);
+  do {
+    //stdout.write("Digite a sua altura (cm): ");
+    double? altura = double.tryParse(stdin.readLineSync()!);
+
+    if (altura == null || altura < 100) {
+      print("Altura inválida. Digite sua altura em cm. Ex 177 .");
+    }
+  } while (altura == null || altura < 100);
 
   imc = peso / ((altura / 100) * (altura / 100));
 
